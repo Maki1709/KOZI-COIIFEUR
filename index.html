@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KŌZI — Salon de Coiffure | Eischen</title>
+
+<meta name="description" content="KŌZI — Salon de coiffure à Eischen. Coupes, colorations, balayage, soins, coiffage et services sur mesure. Prenez rendez-vous en ligne.">
+<meta name="theme-color" content="#f5f4f0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#f5f4f0;
+    --paper:#faf9f6;
+    --white:#ffffff;
+    --black:#111111;
+    --muted:#73716d;
+    --line:rgba(17,17,17,.13);
+    --soft:#eae8e1;
+    --serif:"Playfair Display", Georgia, serif;
+    --sans:"DM Sans", Arial, sans-serif;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--black);
+    font-family:var(--sans);
+    font-weight:400;
+    overflow-x:hidden;
+}
+
+body.loading{
+    overflow:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    display:block;
+    width:100%;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================================================
+   PRELOADER
+========================================================= */
+
+.preloader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#111;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity .8s ease, visibility .8s ease;
+}
+
+.preloader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.preloader-inner{
+    text-align:center;
+}
+
+.preloader-logo{
+    font-size:28px;
+    letter-spacing:.28em;
+    margin-left:.28em;
+}
+
+.preloader-line{
+    width:0;
+    height:1px;
+    background:#fff;
+    margin:22px auto 0;
+    animation:loadLine 1.4s ease forwards;
+}
+
+@keyframes loadLine{
+    to{width:100px;}
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:22px 4vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:
+        background .4s ease,
+        padding .4s ease,
+        box-shadow .4s ease;
+}
+
+.nav.scrolled{
+    background:rgba(245,244,240,.92);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    padding-top:15px;
+    padding-bottom:15px;
+    box-shadow:0 1px 0 rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:20px;
+    letter-spacing:.24em;
+    font-weight:500;
+}
+
+.logo span{
+    display:inline-block;
+    transform:translateY(-1px);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:38px;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+}
+
+.nav-links a{
+    position:relative;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    bottom:-7px;
+    left:0;
+    width:0;
+    height:1px;
+    background:#111;
+    transition:width .3s ease;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-book{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #111;
+    padding:12px 20px;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    transition:.3s ease;
+}
+
+.nav-book:hover{
+    background:#111;
+    color:#fff;
+}
+
+.menu{
+    display:none;
+    width:36px;
+    height:36px;
+    border:0;
+    background:none;
+    cursor:pointer;
+}
+
+.menu span{
+    display:block;
+    width:22px;
+    height:1px;
+    background:#111;
+    margin:5px auto;
+    transition:.3s ease;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100svh;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    overflow:hidden;
+}
+
+.hero-content{
+    min-height:100svh;
+    padding:150px 8vw 80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:28px;
+}
+
+.eyebrow::before{
+    content:"";
+    width:32px;
+    height:1px;
+    background:#111;
+}
+
+.hero h1{
+    font-family:var(--serif);
+    font-size:clamp(62px,8vw,126px);
+    font-weight:400;
+    line-height:.86;
+    letter-spacing:-.045em;
+    max-width:650px;
+}
+
+.hero h1 em{
+    font-weight:400;
+}
+
+.hero-description{
+    max-width:430px;
+    margin-top:38px;
+    font-size:14px;
+    line-height:1.8;
+    color:#62605c;
+}
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    margin-top:38px;
+    flex-wrap:wrap;
+}
+
+.primary-button,
+.secondary-button{
+    min-height:50px;
+    padding:0 25px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    transition:.35s ease;
+}
+
+.primary-button{
+    background:#111;
+    color:#fff;
+}
+
+.primary-button:hover{
+    background:#292929;
+    transform:translateY(-2px);
+}
+
+.secondary-button{
+    border:1px solid var(--line);
+}
+
+.secondary-button:hover{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+.hero-image{
+    position:relative;
+    overflow:hidden;
+    min-height:100svh;
+}
+
+.hero-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        180deg,
+        rgba(0,0,0,.02),
+        rgba(0,0,0,.10)
+    );
+    pointer-events:none;
+}
+
+.hero-image img{
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transform:scale(1.05);
+    animation:heroZoom 1.8s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes heroZoom{
+    to{transform:scale(1);}
+}
+
+.hero-number{
+    position:absolute;
+    bottom:35px;
+    right:35px;
+    color:#fff;
+    z-index:2;
+    font-size:10px;
+    letter-spacing:.16em;
+}
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee{
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:#111;
+    color:#fff;
+    white-space:nowrap;
+}
+
+.marquee-track{
+    width:max-content;
+    display:flex;
+    align-items:center;
+    animation:marquee 28s linear infinite;
+}
+
+.marquee-item{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    padding:18px 30px;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+}
+
+.marquee-dot{
+    width:4px;
+    height:4px;
+    background:#fff;
+    border-radius:50%;
+}
+
+@keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+.section{
+    padding:130px 8vw;
+}
+
+.section-header{
+    display:grid;
+    grid-template-columns:1fr 1.6fr;
+    gap:80px;
+    margin-bottom:75px;
+}
+
+.section-label{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    color:var(--muted);
+    padding-top:10px;
+}
+
+.section-title{
+    font-family:var(--serif);
+    font-size:clamp(42px,5vw,76px);
+    font-weight:400;
+    line-height:1.02;
+    letter-spacing:-.035em;
+}
+
+.section-title em{
+    font-style:italic;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro{
+    background:var(--paper);
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:9vw;
+    align-items:center;
+}
+
+.intro-image{
+    position:relative;
+    overflow:hidden;
+}
+
+.intro-image img{
+    aspect-ratio:4/5;
+    object-fit:cover;
+    transition:transform 1s cubic-bezier(.2,.7,.2,1);
+}
+
+.intro-image:hover img{
+    transform:scale(1.035);
+}
+
+.intro-copy{
+    max-width:520px;
+}
+
+.intro-copy p{
+    font-family:var(--serif);
+    font-size:clamp(24px,3vw,39px);
+    line-height:1.25;
+}
+
+.intro-copy p em{
+    font-style:italic;
+}
+
+.intro-copy-small{
+    margin-top:35px;
+    font-size:13px;
+    line-height:1.9;
+    color:#686661;
+    max-width:450px;
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    background:#fff;
+}
+
+.service-list{
+    border-top:1px solid var(--line);
+}
+
+.service{
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:70px 1fr auto;
+    align-items:center;
+    min-height:95px;
+    transition:padding .4s ease, background .4s ease;
+}
+
+.service:hover{
+    padding-left:18px;
+    padding-right:18px;
+    background:#f7f6f3;
+}
+
+.service-number{
+    font-size:10px;
+    color:#9a9892;
+}
+
+.service-name{
+    font-family:var(--serif);
+    font-size:clamp(20px,2vw,29px);
+}
+
+.service-price{
+    font-size:11px;
+    letter-spacing:.05em;
+    color:#77756f;
+}
+
+.services-note{
+    margin-top:25px;
+    font-size:11px;
+    color:#85827c;
+}
+
+/* =========================================================
+   IMAGE FEATURE
+========================================================= */
+
+.feature{
+    padding:0 4vw 130px;
+    background:#fff;
+}
+
+.feature-image{
+    position:relative;
+    overflow:hidden;
+    height:min(75vh,800px);
+}
+
+.feature-image img{
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    transition:transform 1.2s cubic-bezier(.2,.7,.2,1);
+}
+
+.feature-image:hover img{
+    transform:scale(1.025);
+}
+
+.feature-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:flex-end;
+    padding:50px;
+    background:linear-gradient(
+        transparent 40%,
+        rgba(0,0,0,.45)
+    );
+    color:#fff;
+}
+
+.feature-overlay-content{
+    max-width:570px;
+}
+
+.feature-overlay h2{
+    font-family:var(--serif);
+    font-size:clamp(40px,6vw,80px);
+    font-weight:400;
+    line-height:.98;
+}
+
+.feature-overlay p{
+    margin-top:20px;
+    font-size:13px;
+    line-height:1.7;
+    max-width:440px;
+    opacity:.88;
+}
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.philosophy{
+    background:#111;
+    color:#fff;
+}
+
+.philosophy .section-label{
+    color:#9b9994;
+}
+
+.philosophy .section-title{
+    max-width:850px;
+}
+
+.philosophy-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-top:1px solid rgba(255,255,255,.18);
+    margin-top:85px;
+}
+
+.philosophy-item{
+    padding:34px 35px 10px 0;
+    border-right:1px solid rgba(255,255,255,.18);
+    margin-right:35px;
+}
+
+.philosophy-item:last-child{
+    border-right:0;
+}
+
+.philosophy-item span{
+    display:block;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:#8e8c87;
+    margin-bottom:22px;
+}
+
+.philosophy-item h3{
+    font-family:var(--serif);
+    font-size:28px;
+    font-weight:400;
+}
+
+.philosophy-item p{
+    margin-top:16px;
+    font-size:12px;
+    line-height:1.8;
+    color:#aaa8a2;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+    background:var(--bg);
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows:280px 420px;
+    gap:14px;
+}
+
+.gallery-item{
+    overflow:hidden;
+    position:relative;
+}
+
+.gallery-item:nth-child(1){
+    grid-row:span 2;
+}
+
+.gallery-item img{
+    height:100%;
+    object-fit:cover;
+    transition:transform 1s cubic-bezier(.2,.7,.2,1);
+}
+
+.gallery-item:hover img{
+    transform:scale(1.045);
+}
+
+/* =========================================================
+   TEAM
+========================================================= */
+
+.team{
+    background:#fff;
+}
+
+.team-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.team-card{
+    border-top:1px solid var(--line);
+    padding-top:20px;
+}
+
+.team-image{
+    overflow:hidden;
+}
+
+.team-image img{
+    aspect-ratio:1/1.15;
+    object-fit:cover;
+    filter:saturate(.88);
+    transition:transform 1s ease;
+}
+
+.team-card:hover .team-image img{
+    transform:scale(1.025);
+}
+
+.team-name{
+    font-family:var(--serif);
+    font-size:31px;
+    margin-top:22px;
+}
+
+.team-role{
+    margin-top:7px;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:#85827c;
+}
+
+/* =========================================================
+   BOOKING
+========================================================= */
+
+.booking{
+    background:#e9e7df;
+    text-align:center;
+    padding:150px 8vw;
+}
+
+.booking-label{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    color:#77746e;
+}
+
+.booking h2{
+    font-family:var(--serif);
+    font-size:clamp(55px,8vw,115px);
+    font-weight:400;
+    line-height:.9;
+    letter-spacing:-.045em;
+    margin:27px auto 35px;
+    max-width:1000px;
+}
+
+.booking h2 em{
+    font-style:italic;
+}
+
+.booking p{
+    color:#6f6c65;
+    font-size:13px;
+    max-width:430px;
+    line-height:1.8;
+    margin:0 auto 35px;
+}
+
+.booking-button{
+    display:inline-flex;
+    align-items:center;
+    gap:20px;
+    padding:18px 27px;
+    background:#111;
+    color:#fff;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    transition:.35s ease;
+}
+
+.booking-button::after{
+    content:"↗";
+    font-size:14px;
+}
+
+.booking-button:hover{
+    transform:translateY(-3px);
+    background:#2a2a2a;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    background:#fff;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:100px;
+}
+
+.contact-title{
+    font-family:var(--serif);
+    font-size:clamp(45px,6vw,80px);
+    line-height:1;
+    font-weight:400;
+    letter-spacing:-.04em;
+}
+
+.contact-title em{
+    font-style:italic;
+}
+
+.contact-text{
+    margin-top:28px;
+    max-width:430px;
+    font-size:13px;
+    color:#6c6963;
+    line-height:1.8;
+}
+
+.contact-details{
+    border-top:1px solid var(--line);
+}
+
+.contact-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:20px;
+    padding:23px 0;
+    border-bottom:1px solid var(--line);
+}
+
+.contact-row span{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:#85827c;
+}
+
+.contact-row a,
+.contact-row strong{
+    font-size:13px;
+    font-weight:400;
+}
+
+.contact-row a:hover{
+    text-decoration:underline;
+}
+
+/* =========================================================
+   OPENING HOURS
+========================================================= */
+
+.hours{
+    margin-top:35px;
+    border-top:1px solid var(--line);
+}
+
+.hour{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid var(--line);
+    font-size:12px;
+}
+
+.hour span:first-child{
+    color:#77746e;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    background:#111;
+    color:#fff;
+    padding:75px 4vw 30px;
+}
+
+.footer-top{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:50px;
+    padding-bottom:70px;
+}
+
+.footer-logo{
+    font-size:30px;
+    letter-spacing:.25em;
+}
+
+.footer-description{
+    margin-top:20px;
+    color:#999792;
+    font-size:12px;
+    line-height:1.8;
+    max-width:300px;
+}
+
+.footer-column-title{
+    color:#77756f;
+    text-transform:uppercase;
+    font-size:9px;
+    letter-spacing:.17em;
+    margin-bottom:18px;
+}
+
+.footer-column a{
+    display:block;
+    width:max-content;
+    font-size:12px;
+    margin-bottom:11px;
+    color:#d5d3ce;
+}
+
+.footer-column a:hover{
+    color:#fff;
+}
+
+.footer-bottom{
+    padding-top:25px;
+    border-top:1px solid rgba(255,255,255,.13);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#70706c;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav{
+        padding:18px 6vw;
+    }
+
+    .nav-links,
+    .nav-book{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero{
+        display:block;
+    }
+
+    .hero-content{
+        min-height:auto;
+        padding:145px 7vw 70px;
+    }
+
+    .hero h1{
+        font-size:clamp(65px,19vw,110px);
+    }
+
+    .hero-image{
+        height:65vh;
+        min-height:0;
+    }
+
+    .section{
+        padding:90px 7vw;
+    }
+
+    .section-header{
+        display:block;
+        margin-bottom:50px;
+    }
+
+    .section-label{
+        margin-bottom:25px;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .intro-copy{
+        max-width:none;
+    }
+
+    .service{
+        grid-template-columns:38px 1fr;
+        min-height:80px;
+        gap:10px;
+    }
+
+    .service-price{
+        grid-column:2;
+        margin-top:-25px;
+        padding-bottom:12px;
+    }
+
+    .feature{
+        padding:0 0 90px;
+    }
+
+    .feature-image{
+        height:70vh;
+    }
+
+    .feature-overlay{
+        padding:30px;
+    }
+
+    .philosophy-grid{
+        grid-template-columns:1fr;
+        margin-top:60px;
+    }
+
+    .philosophy-item{
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.18);
+        padding:28px 0;
+        margin:0;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:280px 280px 280px;
+    }
+
+    .gallery-item:nth-child(1){
+        grid-row:span 2;
+    }
+
+    .team-grid{
+        grid-template-columns:1fr;
+    }
+
+    .booking{
+        padding:105px 7vw;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+        gap:60px;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-brand{
+        grid-column:1/-1;
+    }
+
+}
+
+@media(max-width:550px){
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .primary-button,
+    .secondary-button{
+        width:100%;
+    }
+
+    .gallery-grid{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:380px 250px 300px;
+    }
+
+    .gallery-item:nth-child(1){
+        grid-row:auto;
+    }
+
+    .gallery-item:nth-child(4){
+        display:none;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .footer-brand{
+        grid-column:auto;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        line-height:1.7;
+    }
+
+}
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+    position:fixed;
+    inset:0;
+    z-index:999;
+    background:#f5f4f0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    visibility:hidden;
+    transition:.4s ease;
+}
+
+.mobile-menu.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.mobile-menu nav{
+    text-align:center;
+}
+
+.mobile-menu a{
+    display:block;
+    font-family:var(--serif);
+    font-size:45px;
+    margin:17px 0;
+}
+
+.mobile-close{
+    position:absolute;
+    top:20px;
+    right:6vw;
+    border:0;
+    background:none;
+    font-size:27px;
+    cursor:pointer;
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+.cursor{
+    position:fixed;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#111;
+    pointer-events:none;
+    z-index:10000;
+    transform:translate(-50%,-50%);
+    transition:
+        width .2s ease,
+        height .2s ease,
+        background .2s ease;
+    display:none;
+}
+
+@media(min-width:1000px){
+    .cursor{
+        display:block;
+    }
+}
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection{
+    background:#111;
+    color:#fff;
+}
+
+</style>
+</head>
+
+<body class="loading">
+
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-logo">KŌZI</div>
+        <div class="preloader-line"></div>
+    </div>
+</div>
+
+<div class="cursor"></div>
+
+<!-- ======================================================
+     NAVIGATION
+====================================================== -->
+
+<header class="nav" id="navbar">
+
+    <a href="#top" class="logo">
+        KŌZI
+    </a>
+
+    <nav class="nav-links">
+        <a href="#salon">Le salon</a>
+        <a href="#services">Prestations</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <a
+        href="https://salonkee.lu/salon/kozi"
+        target="_blank"
+        class="nav-book"
+    >
+        Prendre rendez-vous
+    </a>
+
+    <button class="menu" id="menuButton" aria-label="Menu">
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+<!-- ======================================================
+     MOBILE MENU
+====================================================== -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <button class="mobile-close" id="mobileClose">
+        ×
+    </button>
+
+    <nav>
+        <a href="#salon">Le salon</a>
+        <a href="#services">Prestations</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+
+        <a
+            href="https://salonkee.lu/salon/kozi"
+            target="_blank"
+            style="font-family:var(--sans);font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-top:35px;"
+        >
+            Prendre rendez-vous
+        </a>
+    </nav>
+
+</div>
+
+<main id="top">
+
+<!-- ======================================================
+     HERO
+====================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            Salon de coiffure · Eischen
+        </div>
+
+        <h1>
+            La beauté<br>
+            <em>en toute simplicité.</em>
+        </h1>
+
+        <p class="hero-description">
+            Un salon chaleureux imaginé autour de trois essentiels :
+            la qualité, la créativité et l'écoute. 
+            Justine & Laurence vous accueillent à Eischen pour
+            des prestations pensées autour de vos envies.
+        </p>
+
+        <div class="hero-actions">
+
+            <a
+                href="https://salonkee.lu/salon/kozi"
+                target="_blank"
+                class="primary-button"
+            >
+                Prendre rendez-vous
+            </a>
+
+            <a
+                href="#services"
+                class="secondary-button"
+            >
+                Découvrir le salon
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <img
+            src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDyGxwq3bM4wd-sm--opt"
+            alt="Salon KŌZI"
+        >
+
+        <div class="hero-number">
+            01 / KŌZI
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     MARQUEE
+====================================================== -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <div class="marquee-item">
+            Coupe <span class="marquee-dot"></span>
+            Coloration <span class="marquee-dot"></span>
+            Balayage <span class="marquee-dot"></span>
+            Soins <span class="marquee-dot"></span>
+            Coiffage <span class="marquee-dot"></span>
+        </div>
+
+        <div class="marquee-item">
+            Coupe <span class="marquee-dot"></span>
+            Coloration <span class="marquee-dot"></span>
+            Balayage <span class="marquee-dot"></span>
+            Soins <span class="marquee-dot"></span>
+            Coiffage <span class="marquee-dot"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ======================================================
+     SALON
+====================================================== -->
+
+<section class="section intro" id="salon">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            01 — Le salon
+        </div>
+
+        <h2 class="section-title">
+            Un moment pour soi,
+            <em>sans artifices.</em>
+        </h2>
+
+    </div>
+
+    <div class="intro-grid">
+
+        <div class="intro-image reveal">
+
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDApmE5wbM4wd-sm--opt"
+                alt="Intérieur du salon KŌZI"
+                loading="lazy"
+            >
+
+        </div>
+
+        <div class="intro-copy reveal">
+
+            <p>
+                « Le service, la qualité, la créativité
+                et la simplicité. »
+            </p>
+
+            <div class="intro-copy-small">
+
+                Justine et Laurence vous accueillent dans
+                un cadre chaleureux où chaque prestation est
+                pensée selon votre style, vos envies et votre
+                personnalité.
+
+                <br><br>
+
+                Coupe, coloration, balayage, soins ou coiffage :
+                KŌZI privilégie un résultat naturel, soigné
+                et adapté à chaque personne.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     SERVICES
+====================================================== -->
+
+<section class="section services" id="services">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            02 — Prestations
+        </div>
+
+        <h2 class="section-title">
+            Des services pensés
+            <em>sur mesure.</em>
+        </h2>
+
+    </div>
+
+    <div class="service-list reveal">
+
+        <div class="service">
+            <span class="service-number">01</span>
+            <span class="service-name">Coupe & Coiffage Femme</span>
+            <span class="service-price">À partir de 31 €</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">02</span>
+            <span class="service-name">Coloration & Éclaircissement</span>
+            <span class="service-price">Sur devis</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">03</span>
+            <span class="service-name">Balayage</span>
+            <span class="service-price">Sur mesure</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">04</span>
+            <span class="service-name">Mouvement & Volume</span>
+            <span class="service-price">Sur mesure</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">05</span>
+            <span class="service-name">Entretien & Soins Cheveux</span>
+            <span class="service-price">Sur mesure</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">06</span>
+            <span class="service-name">Chignon & Événement</span>
+            <span class="service-price">À partir de 50 €</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">07</span>
+            <span class="service-name">Homme</span>
+            <span class="service-price">Sur mesure</span>
+        </div>
+
+        <div class="service">
+            <span class="service-number">08</span>
+            <span class="service-name">Enfant & Étudiant(e)</span>
+            <span class="service-price">Sur mesure</span>
+        </div>
+
+    </div>
+
+    <p class="services-note">
+        Les tarifs peuvent varier selon la longueur, l'épaisseur
+        et la technique souhaitée.
+    </p>
+
+</section>
+
+<!-- ======================================================
+     FEATURE IMAGE
+====================================================== -->
+
+<section class="feature">
+
+    <div class="feature-image reveal">
+
+        <img
+            src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxMVlxR5wbM4wd-sm--opt"
+            alt="KŌZI — Salon de coiffure"
+            loading="lazy"
+        >
+
+        <div class="feature-overlay">
+
+            <div class="feature-overlay-content">
+
+                <h2>
+                    Votre style.<br>
+                    Votre moment.
+                </h2>
+
+                <p>
+                    Un accompagnement attentif et des prestations
+                    adaptées à vos cheveux, votre style et vos envies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     PHILOSOPHY
+====================================================== -->
+
+<section class="section philosophy">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            03 — Notre philosophie
+        </div>
+
+        <h2 class="section-title">
+            Rien de trop.<br>
+            Rien de moins.
+        </h2>
+
+    </div>
+
+    <div class="philosophy-grid">
+
+        <div class="philosophy-item reveal">
+
+            <span>01</span>
+
+            <h3>Écoute</h3>
+
+            <p>
+                Comprendre vos envies avant de commencer,
+                pour créer un résultat qui vous ressemble.
+            </p>
+
+        </div>
+
+        <div class="philosophy-item reveal">
+
+            <span>02</span>
+
+            <h3>Précision</h3>
+
+            <p>
+                Chaque détail compte, de la coupe au coiffage,
+                pour un résultat propre et harmonieux.
+            </p>
+
+        </div>
+
+        <div class="philosophy-item reveal">
+
+            <span>03</span>
+
+            <h3>Simplicité</h3>
+
+            <p>
+                Une atmosphère chaleureuse, un service humain
+                et une expérience sans superflu.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     GALLERY
+====================================================== -->
+
+<section class="section gallery" id="galerie">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            04 — Galerie
+        </div>
+
+        <h2 class="section-title">
+            L'univers<br>
+            <em>KŌZI.</em>
+        </h2>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item reveal">
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDApmE5wbM4wd-sm--opt"
+                alt="KŌZI"
+                loading="lazy"
+            >
+        </div>
+
+        <div class="gallery-item reveal">
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDyGxwq3bM4wd-sm--opt"
+                alt="KŌZI salon"
+                loading="lazy"
+            >
+        </div>
+
+        <div class="gallery-item reveal">
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDJD5dYjbM4wd-sm--opt"
+                alt="KŌZI coiffure"
+                loading="lazy"
+            >
+        </div>
+
+        <div class="gallery-item reveal">
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxMVlxR5wbM4wd-sm--opt"
+                alt="KŌZI intérieur"
+                loading="lazy"
+            >
+        </div>
+
+        <div class="gallery-item reveal">
+            <img
+                src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxMl2Pe9YbM4wd-sm--opt"
+                alt="KŌZI"
+                loading="lazy"
+            >
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     TEAM
+====================================================== -->
+
+<section class="section team">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            05 — L'équipe
+        </div>
+
+        <h2 class="section-title">
+            Justine<br>
+            <em>& Laurence.</em>
+        </h2>
+
+    </div>
+
+    <div class="team-grid">
+
+        <div class="team-card reveal">
+
+            <div class="team-image">
+
+                <img
+                    src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxDJD5dYjbM4wd-sm--opt"
+                    alt="Justine — KŌZI"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="team-name">
+                Justine
+            </div>
+
+            <div class="team-role">
+                Coiffeuse visagiste
+            </div>
+
+        </div>
+
+        <div class="team-card reveal">
+
+            <div class="team-image">
+
+                <img
+                    src="https://salonkee.cloud/lu/data/1450/marketingImages/n-ryAobBRaxMl2Pe9YbM4wd-sm--opt"
+                    alt="Laurence — KŌZI"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="team-name">
+                Laurence
+            </div>
+
+            <div class="team-role">
+                Coiffeuse visagiste
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================================
+     BOOKING
+====================================================== -->
+
+<section class="booking">
+
+    <div class="booking-label reveal">
+        06 — Rendez-vous
+    </div>
+
+    <h2 class="reveal">
+        Votre prochain<br>
+        <em>moment KŌZI.</em>
+    </h2>
+
+    <p class="reveal">
+        Choisissez directement votre prestation et
+        votre créneau via notre réservation en ligne.
+    </p>
+
+    <a
+        href="https://salonkee.lu/salon/kozi"
+        target="_blank"
+        class="booking-button reveal"
+    >
+        Réserver en ligne
+    </a>
+
+</section>
+
+<!-- ======================================================
+     CONTACT
+====================================================== -->
+
+<section class="section contact" id="contact">
+
+    <div class="contact-grid">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                07 — Contact
+            </div>
+
+            <h2 class="contact-title">
+                On vous<br>
+                <em>attend.</em>
+            </h2>
+
+            <p class="contact-text">
+                KŌZI vous accueille uniquement sur rendez-vous
+                au 6, rue du Bois à Eischen.
+            </p>
+
+            <div style="margin-top:30px;">
+
+                <a
+                    href="https://www.instagram.com/kozi_coiffure"
+                    target="_blank"
+                    class="secondary-button"
+                >
+                    Instagram
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="reveal">
+
+            <div class="contact-details">
+
+                <div class="contact-row">
+
+                    <span>Adresse</span>
+
+                    <strong>
+                        6, rue du Bois<br>
+                        L-8463 Eischen
+                    </strong>
+
+                </div>
+
+                <div class="contact-row">
+
+                    <span>Téléphone</span>
+
+                    <a href="tel:+352691808308">
+                        +352 691 808 308
+                    </a>
+
+                </div>
+
+                <div class="contact-row">
+
+                    <span>Réservation</span>
+
+                    <a
+                        href="https://salonkee.lu/salon/kozi"
+                        target="_blank"
+                    >
+                        Salonkee ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hours">
+
+                <div class="hour">
+                    <span>Lundi</span>
+                    <span>09:00 — 15:00</span>
+                </div>
+
+                <div class="hour">
+                    <span>Mardi</span>
+                    <span>09:00 — 21:00</span>
+                </div>
+
+                <div class="hour">
+                    <span>Mercredi</span>
+                    <span>Fermé</span>
+                </div>
+
+                <div class="hour">
+                    <span>Jeudi</span>
+                    <span>09:00 — 21:00</span>
+                </div>
+
+                <div class="hour">
+                    <span>Vendredi</span>
+                    <span>09:00 — 18:00</span>
+                </div>
+
+                <div class="hour">
+                    <span>Samedi</span>
+                    <span>08:00 — 14:00</span>
+                </div>
+
+                <div class="hour">
+                    <span>Dimanche</span>
+                    <span>Fermé</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                KŌZI
+            </div>
+
+            <p class="footer-description">
+                Salon de coiffure à Eischen.
+                Service, qualité, créativité
+                et simplicité.
+            </p>
+
+        </div>
+
+        <div class="footer-column">
+
+            <div class="footer-column-title">
+                Navigation
+            </div>
+
+            <a href="#salon">Le salon</a>
+            <a href="#services">Prestations</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#contact">Contact</a>
+
+        </div>
+
+        <div class="footer-column">
+
+            <div class="footer-column-title">
+                Contact
+            </div>
+
+            <a href="tel:+352691808308">
+                +352 691 808 308
+            </a>
+
+            <a
+                href="https://www.instagram.com/kozi_coiffure"
+                target="_blank"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="https://salonkee.lu/salon/kozi"
+                target="_blank"
+            >
+                Réserver
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 KŌZI
+        </span>
+
+        <span>
+            Eischen · Luxembourg
+        </span>
+
+        <span>
+            6, rue du Bois · L-8463
+        </span>
+
+    </div>
+
+</footer>
+
+<script>
+
+/* =========================================================
+   PRELOADER
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    setTimeout(() => {
+
+        document.querySelector(".preloader")
+            .classList.add("hide");
+
+        document.body.classList.remove("loading");
+
+    }, 650);
+
+});
+
+
+/* =========================================================
+   NAVIGATION ON SCROLL
+========================================================= */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 40){
+
+        navbar.classList.add("scrolled");
+
+    }else{
+
+        navbar.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+
+                    revealObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+revealElements.forEach((element) => {
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+const mobileClose =
+    document.getElementById("mobileClose");
+
+menuButton.addEventListener("click", () => {
+
+    mobileMenu.classList.add("active");
+
+});
+
+mobileClose.addEventListener("click", () => {
+
+    mobileMenu.classList.remove("active");
+
+});
+
+document.querySelectorAll(".mobile-menu a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        mobileMenu.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor =
+    document.querySelector(".cursor");
+
+if(cursor){
+
+    window.addEventListener("mousemove", (event) => {
+
+        cursor.style.left =
+            event.clientX + "px";
+
+        cursor.style.top =
+            event.clientY + "px";
+
+    });
+
+    const interactive =
+        document.querySelectorAll("a, button");
+
+    interactive.forEach(element => {
+
+        element.addEventListener("mouseenter", () => {
+
+            cursor.style.width = "18px";
+            cursor.style.height = "18px";
+
+        });
+
+        element.addEventListener("mouseleave", () => {
+
+            cursor.style.width = "8px";
+            cursor.style.height = "8px";
+
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   PARALLAX HERO
+========================================================= */
+
+const heroImage =
+    document.querySelector(".hero-image img");
+
+window.addEventListener("scroll", () => {
+
+    if(window.innerWidth > 900 && heroImage){
+
+        const scroll =
+            window.scrollY;
+
+        heroImage.style.transform =
+            `translateY(${scroll * 0.08}px) scale(1.02)`;
+
+    }
+
+});
+
+
+/* =========================================================
+   SMOOTH ANCHOR OFFSET
+========================================================= */
+
+document.querySelectorAll('a[href^="#"]')
+.forEach(anchor => {
+
+    anchor.addEventListener("click", function(event){
+
+        const target =
+            document.querySelector(this.getAttribute("href"));
+
+        if(target){
+
+            event.preventDefault();
+
+            const offset =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                70;
+
+            window.scrollTo({
+
+                top:offset,
+
+                behavior:"smooth"
+
+            });
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
